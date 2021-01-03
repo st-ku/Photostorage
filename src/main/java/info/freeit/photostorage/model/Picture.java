@@ -13,10 +13,10 @@ public class Picture {
     private Long id;
     private int width;
     private int height;
-    private long size;
     private String type;
-    private String description;
     private LocalDateTime created;
     private LocalDateTime updated;
     private String url;
+    private String metaData;
+
 }

@@ -1,4 +1,5 @@
 package info.freeit.photostorage.repository;
 
-public class PhotoRepository {
+public interface PictureRepository {
+
 }
