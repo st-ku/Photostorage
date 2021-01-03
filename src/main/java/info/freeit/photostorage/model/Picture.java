@@ -1,4 +1,4 @@
-package freeblr.photostorage.model;
+package info.freeit.photostorage.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

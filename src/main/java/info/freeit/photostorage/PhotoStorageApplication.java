@@ -1,11 +1,11 @@
-package freeblr.photostorage;
+package info.freeit.photostorage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PhotostorageApplication {
+public class PhotoStorageApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PhotostorageApplication.class, args);
+        SpringApplication.run(PhotoStorageApplication.class, args);
     }
 }
