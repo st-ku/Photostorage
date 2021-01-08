@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@NamedQuery(name = "findAllByType",
+        query = "select p from Picture p where type =:type")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,5 +32,6 @@ public class Picture {
     private LocalDateTime updated;
     private String url;
     private String metaData;
+    private String name;
 
 }
