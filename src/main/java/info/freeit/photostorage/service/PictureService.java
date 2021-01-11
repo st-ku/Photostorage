@@ -1,20 +1,24 @@
 package info.freeit.photostorage.service;
 
 import info.freeit.photostorage.model.Picture;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
-import java.io.File;
 import java.util.List;
 
 public interface PictureService {
 
     List<Picture> getAllPictures();
 
-    Picture getPictureById();
+    List<Picture> getAllPictures(Sort sort);
 
-    String getMetadataById();
+    Page<Picture> getAllPictures(Pageable pageable);
 
-    List<String> getAllMetaData();
+    Picture getPictureById(Long id);
 
-    void savePicture(Picture picture, File file);
+    Picture savePicture(Picture picture, byte[] file);
+
+    Picture updatePicture(Picture picture);
 
 }

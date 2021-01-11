@@ -16,6 +16,5 @@ public interface PictureRepository extends JpaRepository<Picture, Long>, Picture
                                            @Param("height") int height);
 }
 interface PictureRepositoryCustom {
-    List<Picture> findAllByType(String type);
     List<Picture> findAllByName(String name);
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -23,15 +22,9 @@ public class  PictureRepositoryCustomImpl implements PictureRepositoryCustom {
     private final MapSqlParameterSource parameters = new MapSqlParameterSource();
 
     @Override
-    public List<Picture> findAllByType(String type) {
-        TypedQuery<Picture> query = entityManager.createNamedQuery("findAllByType", Picture.class);
-        query.setParameter("type", type);
-        return query.getResultList();
-    }
-
-    @Override
     public List<Picture> findAllByName(String name) {
         parameters.addValue("targetName", name);
         return jdbcTemplate.query(findAllByName_SQL, parameters, new BeanPropertyRowMapper<>(Picture.class));
     }
+
 }
