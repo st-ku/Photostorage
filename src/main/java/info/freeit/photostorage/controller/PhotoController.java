@@ -55,7 +55,9 @@ public class PhotoController {
 
     @PostMapping(path =  "/photos", consumes = "multipart/form-data")
     public ResponseEntity<Picture> savePicture(@RequestParam("imageFile") MultipartFile fileUpload) throws IOException {
-        return new ResponseEntity<>(pictureService.savePicture(new Picture(), fileUpload.getBytes()), HttpStatus.OK);
+        Picture picture = new Picture();
+        picture.setName(fileUpload.getOriginalFilename());
+        return new ResponseEntity<>(pictureService.savePicture(picture, fileUpload.getBytes()), HttpStatus.OK);
     }
 
 }

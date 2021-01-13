@@ -40,8 +40,6 @@ public class Picture {
     private String type;
 
     @CreationTimestamp
-    @NotNull
-    @PastOrPresent
     private LocalDateTime created;
 
     @UpdateTimestamp

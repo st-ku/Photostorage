@@ -57,7 +57,6 @@ public class PictureServiceImpl implements PictureService {
         entity.setHeight((Integer) cloudResponse.get("height"));
         entity.setWidth((Integer) cloudResponse.get("width"));
         entity.setUrl((String) cloudResponse.get("url"));
-        entity.setName((String) cloudResponse.get("original_filename"));
         entity.setType((String) cloudResponse.get("type"));
     }
 
