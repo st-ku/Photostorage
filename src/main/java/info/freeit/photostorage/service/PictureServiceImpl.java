@@ -38,7 +38,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public Picture getPictureById(Long id) {
-        return pictureRepository.findById(id).orElseThrow();
+        return pictureRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
@@ -57,7 +57,6 @@ public class PictureServiceImpl implements PictureService {
         entity.setHeight((Integer) cloudResponse.get("height"));
         entity.setWidth((Integer) cloudResponse.get("width"));
         entity.setUrl((String) cloudResponse.get("url"));
-        entity.setName((String) cloudResponse.get("original_filename"));
         entity.setType((String) cloudResponse.get("type"));
     }
 

@@ -26,4 +26,5 @@ public class CloudStorageServiceImpl implements CloudStorageService {
             Map<String, String> response = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
         return response;
     }
+
 }

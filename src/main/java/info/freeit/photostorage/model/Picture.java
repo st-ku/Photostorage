@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
@@ -40,8 +39,6 @@ public class Picture {
     private String type;
 
     @CreationTimestamp
-    @NotNull
-    @PastOrPresent
     private LocalDateTime created;
 
     @UpdateTimestamp
