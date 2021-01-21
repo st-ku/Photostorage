@@ -2,6 +2,9 @@ package info.freeit.photostorage.controller;
 
 import info.freeit.photostorage.model.Picture;
 import info.freeit.photostorage.service.PictureService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +54,13 @@ public class PhotoController {
     @GetMapping("/{id}")
     public ResponseEntity<String> getPicture(@PathVariable Long id) {
         return new ResponseEntity<>(pictureService.getPictureById(id).getUrl(), HttpStatus.OK);
+    }
+
+    @GetMapping("/latest")
+    public ResponseEntity<List<Picture>> getAllLatest(@RequestParam(value = "page", required = true) int page, @RequestParam(value = "size", required = true) int size ) {
+        Pageable sortedByUpdatedAsc =
+                PageRequest.of(page, size, Sort.by("updated").descending());
+        return new ResponseEntity<>(pictureService.getAllPictures(sortedByUpdatedAsc).getContent(), HttpStatus.OK);
     }
 
     @PostMapping(path =  "/photos", consumes = "multipart/form-data")
