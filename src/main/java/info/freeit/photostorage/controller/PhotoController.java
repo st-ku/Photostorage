@@ -1,6 +1,7 @@
 package info.freeit.photostorage.controller;
 
 import info.freeit.photostorage.model.Picture;
+import info.freeit.photostorage.model.User;
 import info.freeit.photostorage.service.PictureService;
 import info.freeit.photostorage.service.UserService;
 import org.springframework.data.domain.PageRequest;
@@ -72,9 +73,13 @@ public class PhotoController {
     public ResponseEntity<Picture> savePicture(@RequestParam("imageFile") MultipartFile fileUpload, Authentication authentication) throws IOException {
         Picture picture = new Picture();
         DefaultOidcUser principal = (DefaultOidcUser) authentication.getPrincipal();
+        User user = userService.findUserById(principal.getEmail());
         picture.setName(fileUpload.getOriginalFilename());
-        picture.setUser(userService.findUserById(principal.getEmail()));
-        return new ResponseEntity<>(pictureService.savePicture(picture, fileUpload.getBytes()), HttpStatus.OK);
+        picture.setUser(user);
+        pictureService.savePicture(picture, fileUpload.getBytes());
+        user.getPictureList().add(picture);
+        userService.updateUser(user);
+        return new ResponseEntity<>(picture, HttpStatus.OK);
     }
 
 }
