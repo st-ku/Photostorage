@@ -14,7 +14,11 @@ public interface PictureRepository extends JpaRepository<Picture, Long>, Picture
     @Query("SELECT p FROM Picture p WHERE ((p.width < :width) AND (p.height < :height))")
     List<Picture> findAllLessThenDimension(@Param("width") int width,
                                            @Param("height") int height);
+    @Query("SELECT p.url FROM Picture p")
+    List<String> findAllPictureUrls();
+
 }
+
 interface PictureRepositoryCustom {
     List<Picture> findAllByName(String name);
 }
