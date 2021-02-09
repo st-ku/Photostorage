@@ -52,9 +52,13 @@ public class PhotoController {
         return new ResponseEntity<>(pictureService.getPictureById(id), HttpStatus.OK);
     }
 
+    /**
+     * Get pictures's URLS from DB
+     * @return List only URLS of pictures from BB
+     */
     @GetMapping("/photos")
     public ResponseEntity<List<String>> getAllPictures() {
-        return new ResponseEntity<>(pictureService.getAllPictures().stream().map(Picture::getUrl).collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity<>(pictureService.getAllPictureUrls(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

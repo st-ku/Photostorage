@@ -2,6 +2,7 @@ package info.freeit.photostorage.repository;
 
 import info.freeit.photostorage.model.Picture;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -26,5 +27,4 @@ public class  PictureRepositoryCustomImpl implements PictureRepositoryCustom {
         parameters.addValue("targetName", name);
         return jdbcTemplate.query(findAllByName_SQL, parameters, new BeanPropertyRowMapper<>(Picture.class));
     }
-
 }

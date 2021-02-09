@@ -22,6 +22,11 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+    public List<String> getAllPictureUrls() {
+        return pictureRepository.findAllPictureUrls();
+    }
+
+    @Override
     public List<Picture> getAllPictures() {
         return pictureRepository.findAll();
     }
