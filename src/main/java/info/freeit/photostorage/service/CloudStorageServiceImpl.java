@@ -35,4 +35,5 @@ public class CloudStorageServiceImpl implements CloudStorageService {
         }
         else throw new UnsupportedOperationException("Unsupported file format");
     }
+
 }

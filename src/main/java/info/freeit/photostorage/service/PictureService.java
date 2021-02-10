@@ -21,4 +21,6 @@ public interface PictureService {
 
     Picture updatePicture(Picture picture);
 
+    List<String> getAllPictureUrls();
+
 }

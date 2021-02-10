@@ -22,6 +22,11 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+    public List<String> getAllPictureUrls() {
+        return pictureRepository.findAllPictureUrls();
+    }
+
+    @Override
     public List<Picture> getAllPictures() {
         return pictureRepository.findAll();
     }
@@ -38,7 +43,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public Picture getPictureById(Long id) {
-        return pictureRepository.findById(id).orElseThrow();
+        return pictureRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
