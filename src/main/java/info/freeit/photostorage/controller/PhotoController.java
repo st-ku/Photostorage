@@ -1,12 +1,16 @@
 package info.freeit.photostorage.controller;
 
 import info.freeit.photostorage.model.Picture;
+import info.freeit.photostorage.model.User;
 import info.freeit.photostorage.service.PictureService;
+import info.freeit.photostorage.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,9 +35,11 @@ import java.util.stream.Collectors;
 public class PhotoController {
 
     private final PictureService pictureService;
+    private final UserService userService;
 
-    public PhotoController(PictureService pictureService) {
+    public PhotoController(PictureService pictureService, UserService userService) {
         this.pictureService = pictureService;
+        this.userService = userService;
     }
 
     @GetMapping("/metadata")
@@ -68,10 +74,16 @@ public class PhotoController {
     }
 
     @PostMapping(path =  "/photos", consumes = "multipart/form-data")
-    public ResponseEntity<Picture> savePicture(@RequestParam("imageFile") MultipartFile fileUpload) throws IOException {
+    public ResponseEntity<Picture> savePicture(@RequestParam("imageFile") MultipartFile fileUpload, Authentication authentication) throws IOException {
         Picture picture = new Picture();
+        DefaultOidcUser principal = (DefaultOidcUser) authentication.getPrincipal();
+        User user = userService.findUserById(principal.getEmail());
         picture.setName(fileUpload.getOriginalFilename());
-        return new ResponseEntity<>(pictureService.savePicture(picture, fileUpload.getBytes()), HttpStatus.OK);
+        picture.setUser(user);
+        pictureService.savePicture(picture, fileUpload.getBytes());
+        user.getPictureList().add(picture);
+        userService.updateUser(user);
+        return new ResponseEntity<>(picture, HttpStatus.OK);
     }
 
 }
