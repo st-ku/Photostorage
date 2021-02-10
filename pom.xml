@@ -76,6 +76,12 @@
             <artifactId>cloudinary-http44</artifactId>
             <version>1.27.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers</artifactId>
+            <version>1.25</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
