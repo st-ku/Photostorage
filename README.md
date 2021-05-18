@@ -3,14 +3,13 @@
 This is rest api photostorage service. This service has many features that a real cloud photostorage service has.
  
 ## Functionality
-### Base
 * Login / Logout over google oauth
 * View own profile
 * Edit own profile
 * Find photos by id (with sort or pagination).
 * Add/update/delete photos
+
 ## Technologies used
-### Stack:
 * Java 11
 * Spring: Boot, MVC, Data JPA,Security
 * Maven
