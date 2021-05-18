@@ -18,11 +18,6 @@ This is rest api photostorage service. This service has many features that a rea
 * Cloudinary , Apache TiKa
 * Test: JUnit, Mockito
 
-## Quick start
-#### Required:
-* Java 11
-* Maven 
-
 
 ## Simple user interface
  Simple UI (swagger-ui) at the link below:
